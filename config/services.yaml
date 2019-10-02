@@ -15,13 +15,17 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/App/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/App/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
         resource: '../src/App/Controller'
         tags: ['controller.service_arguments']
+
+    MyMac\ToolliniFighetti\Command\:
+        resource: '../src/MyMac/ToolliniFighetti/Command/*'
+        tags: ['console.command']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

@@ -27,7 +27,7 @@ class Kernel extends BaseKernel
 
     public function getProjectDir(): string
     {
-        return \dirname(__DIR__);
+        return realpath(dirname(__DIR__).DIRECTORY_SEPARATOR."..");
     }
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void

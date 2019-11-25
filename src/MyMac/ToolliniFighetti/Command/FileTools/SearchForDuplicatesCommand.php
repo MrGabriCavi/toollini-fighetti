@@ -78,15 +78,18 @@ class SearchForDuplicatesCommand extends Command
                         $sha1Dest = sha1_file($fileFound->getRealPath());
                         if ($sha1Source === $sha1Dest) {
                             $output->writeln("DUPLICATO TROVATO: ".$fileFound->getRealPath());
-                            $helper = $this->getHelper('question');
-                            $question = new ConfirmationQuestion(
-                                'Cancellare il file?',
-                                false
-                            );
-                            if (!$helper->ask($input, $output, $question)) {
-                                continue;
-                            }
+
+//                            $helper = $this->getHelper('question');
+//                            $question = new ConfirmationQuestion(
+//                                'Cancellare il file?',
+//                                false
+//                            );
+//                            if (!$helper->ask($input, $output, $question)) {
+//                                continue;
+//                            }
+
                             $this->getFilesystem()->remove($absoluteFilePath);
+                            $output->writeln("Cancellato");
                         }
                     }
                 }
